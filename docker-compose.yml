@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  clamav:
+    image: clamav/clamav:latest
+    container_name: clamav
+    ports:
+      - "3310:3310"
+
+  postgres:
+    image: postgres:16
+    container_name: filescan_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: filescan
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: devpass
+    ports:
+      - "5432:5432"
