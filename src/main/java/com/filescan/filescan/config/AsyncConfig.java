@@ -13,9 +13,9 @@ public class AsyncConfig {
     @Bean(name = "fileScanExecutor")
     public Executor taskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(5);     // minimum thread
-        executor.setMaxPoolSize(10);     // maksimum thread
-        executor.setQueueCapacity(100);  // queue size
+        executor.setCorePoolSize(5);
+        executor.setMaxPoolSize(10);
+        executor.setQueueCapacity(100);
         executor.setThreadNamePrefix("FileScan-");
         executor.initialize();
         return executor;

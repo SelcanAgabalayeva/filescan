@@ -47,7 +47,6 @@ public class FileScanServiceImpl implements FileScanService {
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             String response = reader.readLine();
 
-            // 🔥 ƏN VACİB HİSSƏ
             String cleanResponse = response.replace("\0", "");
 
             boolean infected = cleanResponse.contains("FOUND");
