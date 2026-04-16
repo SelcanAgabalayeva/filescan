@@ -20,6 +20,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
@@ -39,21 +40,18 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 
         String token = authHeader.substring(7);
-        String username = jwtUtil.validateTokenAndGetUsername(token);
+        String email = jwtUtil.validateTokenAndGetUsername(token);
 
-        if (username != null) {
-            User user = userRepository.findByEmail(username)
+        if (email != null) {
+
+            User user = userRepository.findByEmail(email)
                     .orElseThrow(() -> new RuntimeException("User not found"));
-
-            List<GrantedAuthority> authorities = List.of(
-                    new SimpleGrantedAuthority(user.getRole().name())
-            );
 
             UsernamePasswordAuthenticationToken auth =
                     new UsernamePasswordAuthenticationToken(
-                            username,
+                            new CustomUserDetails(user),
                             null,
-                            authorities
+                            new CustomUserDetails(user).getAuthorities()
                     );
 
             SecurityContextHolder.getContext().setAuthentication(auth);
@@ -62,4 +60,3 @@ public class JwtFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 }
-

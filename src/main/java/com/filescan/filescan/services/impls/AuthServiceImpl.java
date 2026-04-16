@@ -9,7 +9,6 @@ import com.filescan.filescan.model.User;
 import com.filescan.filescan.repositories.UserRepository;
 import com.filescan.filescan.security.JwtUtil;
 import com.filescan.filescan.services.AuthService;
-import com.filescan.filescan.services.JwtBlacklistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

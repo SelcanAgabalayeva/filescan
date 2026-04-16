@@ -6,6 +6,7 @@ import com.filescan.filescan.services.FileScanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +21,7 @@ import java.util.concurrent.CompletableFuture;
 public class FileController {
 
     private final FileScanService fileScanService;
-
+    @PreAuthorize("hasAnyAuthority('USER','ADMIN')")
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
 

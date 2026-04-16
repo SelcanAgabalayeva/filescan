@@ -1,4 +1,4 @@
-package com.filescan.filescan.services;
+package com.filescan.filescan.services.impls;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;
